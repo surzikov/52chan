@@ -39,7 +39,12 @@
     </footer>
 </body>
 <script>
-    forumUrl = location.search.split('forumUrl=')[1]
+    if(location.search.split('forumUrl=')[1] != undefined){
+       forumUrl = location.search.split('forumUrl=')[1] 
+    }else{
+        forumUrl = 'test'
+    }
+    
     document.querySelector('#forumTitle').innerHTML = forumUrl
     const firebaseConfig = {
         apiKey: "AIzaSyAs7_DPRcN9YYYQ6NFCBEy3AaMSY6ymK3U",
@@ -51,19 +56,13 @@
         appId: "1:683086456555:web:f0453b2b1f78fb51dec0ae"
     };
    
-    document.querySelector('#forumUrl').addEventListener('submit', (e)=>{
+    document.querySelector('#forumUrl').addEventListener('input', (e)=>{
         e.preventDefault()
-        
-        forumUrl = document.querySelector('#forumId').value;
-        document.querySelector('#forumTitle').innerHTML = forumUrl
-        displayMessages()
+        toForumUrl = document.querySelector('#forumId').value;
+        document.querySelector('#toForum').href = `https://surzikovaleksandr.github.io/52chan/?forumUrl=${toForumUrl}`
     })
     
-    document.getElementById('toForum').addEventListener('click', ()=> {
-        forumUrl = document.querySelector('#forumId').value;
-        document.querySelector('#forumTitle').innerHTML = forumUrl
-        displayMessages()
-    });
+    
     document.getElementById('submitSend').addEventListener('click', ()=> {
         let mInp = document.getElementById('messageInput')
         if(mInp.value != ''){
