@@ -39,6 +39,7 @@
     </footer>
 </body>
 <script>
+    let messagePageCount = 10
     if(location.search.split('forumUrl=')[1] != undefined){
        forumUrl = location.search.split('forumUrl=')[1] 
     }else{
@@ -74,13 +75,14 @@
 
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
+    let count = 1
     function displayMessages() {
         const messagesRef = database.ref(`forums/${forumUrl}/messages`);
         messagesRef.on('value', (snapshot) => {
             const messagesDiv = document.getElementById('messages');
             messagesDiv.innerHTML = '';
             snapshot.forEach((childSnapshot) => {
-                
+                if(count<messagePageCount){
                 const messageId = childSnapshot.key;
                 const messageElement = document.createElement('div');
                 messageElement.innerHTML = `
@@ -96,7 +98,9 @@
                     </article> 
                     `;
                     messagesDiv.insertBefore(messageElement, messagesDiv.firstChild);
-                
+                }else{
+                    break
+                }
             });
         });
     }
