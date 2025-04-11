@@ -75,8 +75,9 @@
 
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
-    let count = 1
+    
     function displayMessages() {
+        let count = 1
         const messagesRef = database.ref(`forums/${forumUrl}/messages`);
         messagesRef.on('value', (snapshot) => {
             const messagesDiv = document.getElementById('messages');
