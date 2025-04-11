@@ -84,7 +84,7 @@
             messagesDiv.innerHTML = '';
             for(let count = 1; count<messagePageCount; count++){
             
-                const messageId = snapshot[count].key;
+                const messageId = snapshot[count];
                 const messageElement = document.createElement('div');
                 messageElement.innerHTML = `
                     <article class="message" id="${messageId}">
