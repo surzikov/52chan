@@ -77,30 +77,30 @@
     const database = firebase.database();
     
     function displayMessages() {
-        let count = 1
+        
         const messagesRef = database.ref(`forums/${forumUrl}/messages`);
         messagesRef.on('value', (snapshot) => {
             const messagesDiv = document.getElementById('messages');
             messagesDiv.innerHTML = '';
-            snapshot.forEach((childSnapshot) => {
-                if(count<messagePageCount){
-                const messageId = childSnapshot.key;
+            for(let count = 1; count<messagePageCount; count++){
+            
+                const messageId = snapshot[count].key;
                 const messageElement = document.createElement('div');
                 messageElement.innerHTML = `
                     <article class="message" id="${messageId}">
                         <div>
                             <div>
                                 <span>Anonimous</span>
-                                <span>${childSnapshot.val().time}</span>
+                                <span>${snapshot[count].val().time}</span>
                             </div>
                             <span class="spanId">${messageId}</span><br>    
                         </div>
-                        <span>${childSnapshot.val().message}</span> 
+                        <span>${snapshot[count].val().message}</span> 
                     </article> 
                     `;
                     messagesDiv.insertBefore(messageElement, messagesDiv.firstChild);
-                    count++
-                }
+            }
+                
             });
         });
     }
