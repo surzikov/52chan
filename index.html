@@ -81,6 +81,7 @@
         messagesDiv.innerHTML = '';
         messagesRef.on('value', (snapshot) => {
             snapshot.forEach((childSnapshot)=>{
+                const messageId = childSnapshot.key
                const messageElement = document.createElement('div');
                 messageElement.innerHTML = `
                     <article class="message" id="${messageId}">
@@ -111,7 +112,7 @@
             message: message,
             time: time,
         })
-        messageCount++
+
     }
 
 
