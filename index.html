@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Форумs</title>
+    <title>Форум</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
@@ -85,7 +85,7 @@
         messagesRef.on('value', (snapshot) => {
             let inBaseCount = 0
              snapshot.forEach((childSnapshot)=>{
-                inBaseCount = 0
+                inBaseCount++
             })
             let loadCount = 1
             snapshot.forEach((childSnapshot)=>{
@@ -108,6 +108,7 @@
                 }else{
                     console.log('no')
                 }
+                loadCount++
                })
               })
             ;
