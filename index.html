@@ -107,7 +107,7 @@
                         <span>${childSnapshot.val().message}</span> 
                     </article> 
                     `;
-                    messagesDiv.appendChild(messageElement);
+                    messagesDiv.insertBefore(messageElement, messagesDiv.firstChild);
                 }
                 loadCount++
                })
