@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Форумs</title>
+    <title>Форум</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
@@ -43,10 +43,6 @@
     addMessagesButton.innerHTML = 'Показать больше сообщений'
     addMessagesButton.className = 'btn'
     addMessagesButton.id = 'addMessages'
-
-    addMessagesButton.addEventListener('click', ()=>{
-        messageCount+= 10
-    })
     
     let inBaseCount
     let messageCount = 10
@@ -116,6 +112,10 @@
                 loadCount++
                })
             if(inBaseCount>messageCount){
+                let addMessagesButton = document.createElement('a')
+                addMessagesButton.innerHTML = 'Показать больше сообщений'
+                addMessagesButton.className = 'btn'
+                addMessagesButton.id = 'addMessages'
                 messagesDiv.appendChild(addMessagesButton)
                 document.querySelector('#addMessages').addEventListener('click', ()=>{
                     messageCount+= 10
