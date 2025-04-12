@@ -79,8 +79,8 @@
         const messagesRef = database.ref(`forums/${forumUrl}/messages`);
         const messagesDiv = document.getElementById('messages');
         messagesDiv.innerHTML = '';
-        messagesRef.on('value', (snapshot) => {
-            snapshot.reverse().forEach((childSnapshot)=>{
+        messagesRef.reverse().on('value', (snapshot) => {
+            snapshot.forEach((childSnapshot)=>{
                const messageElement = document.createElement('div');
                 messageElement.innerHTML = `
                     <article class="message" id="${messageId}">
