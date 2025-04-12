@@ -45,7 +45,6 @@
     }else{
         forumUrl = 'test'
     }
-    let pageMessagesArr = []
     document.querySelector('#forumTitle').innerHTML = forumUrl
     const firebaseConfig = {
         apiKey: "AIzaSyAs7_DPRcN9YYYQ6NFCBEy3AaMSY6ymK3U",
@@ -72,64 +71,37 @@
             saveMessage(message);  
         }
     });
- // const messageId = childSnapshot.key;
-                // const messageElement = document.createElement('div');
-                // messageElement.innerHTML = `
-                //     <article class="message" id="${messageId}">
-                //         <div>
-                //             <div>
-                //                 <span>Anonimous</span>
-                //                 <span>${childSnapshot.val().time}</span>
-                //             </div>
-                //             <span class="spanId">${messageId}</span><br>    
-                //         </div>
-                //         <span>${childSnapshot.val().message}</span> 
-                //     </article> 
-                //     `;
-                //     messagesDiv.insertBefore(messageElement, messagesDiv.firstChild);
+
             
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
-    function loadMessages() {
-        pageMessagesArr = []
+    function displayMessages() {
         const messagesRef = database.ref(`forums/${forumUrl}/messages`);
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML = '';
         messagesRef.on('value', (snapshot) => {
-            snapshot.forEach((childSnapshot)=>{
-               pageMessagesArr.push({
-                message: childSnapshot.val().message,
-                time: childSnapshot.val().time
+            snapshot.reverse().forEach((childSnapshot)=>{
+               const messageElement = document.createElement('div');
+                messageElement.innerHTML = `
+                    <article class="message" id="${messageId}">
+                        <div>
+                            <div>
+                                <span>Anonimous</span>
+                                <span>${childSnapshot.val().time}</span>
+                            </div>
+                            <span class="spanId">${messageId}</span><br>    
+                        </div>
+                        <span>${childSnapshot.val().message}</span> 
+                    </article> 
+                    `;
+                    messagesDiv.appendChild(messageElement);
                })
               })
             });
         
         };
 
-    function displayMessages(){
-        
-        const messagesDiv = document.getElementById('messages');
-        messagesDiv.innerHTML = '';
-
-        for(let count = pageMessagesArr.length-2;count>(pageMessagesArr.length-messageCount); count++){
-            
-
-        console.log( count)
-        const messageElement = document.createElement('div');
-        messageElement.innerHTML = `
-                    <article class="message" >
-                        <div>
-                            <div>
-                                <span>Anonimous</span>
-                                <span>${time}</span>
-                            </div>
-                            <span class="spanId"></span><br>    
-                        </div>
-                        <span>${pageMessagesArr[count].message}</span> 
-                    </article> 
-                    `;
-                    messagesDiv.insertBefore(messageElement, messagesDiv.firstChild);
-        }
-        
-    }
+   
     
     function saveMessage(message) {
         let date = new Date()
@@ -140,11 +112,10 @@
             time: time,
         })
         messageCount++
-        displayMessages()
     }
 
-        // Display messages when the page loads
-        loadMessages();
+
+        displayMessages();
 
 
 </script>
