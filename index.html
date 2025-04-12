@@ -108,7 +108,7 @@
         let date = new Date()
         let time = `${date.getDate()}-${date.getMonth()+1}-${String(date.getYear())[1] + String(date.getYear())[2]}-${date.getHours()}:${date.getMinutes()}`
         const messagesRef = database.ref(`forums/${forumUrl}/messages`);
-        messagesRef.push({
+        messagesRef.unshift({
             message: message,
             time: time,
         })
