@@ -75,3 +75,28 @@ label{
 textarea{
     resize: none;
 }
+header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px 20px;
+    align-items: center;
+    
+    background-color: rgb(212, 147, 103);
+}
+#forumUrl{
+    justify-self: end;
+}
+@media screen and (max-width:  750px){
+    header{
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+    }
+    header div{
+        justify-self: center;
+    }
+    #forumUrl{
+        display: grid;
+        justify-items: center;
+        row-gap: 5px;
+    }
+}
