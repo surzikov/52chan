@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Форум</title>
     <link rel="stylesheet" href="css/style.css">
+    
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
 </head>
@@ -15,9 +16,16 @@
         </div>
         <div>
             <form action="" id="forumUrl">
-                <input type="text" id="forumId">
-                <a id="toForum" class="btn">To forum on url</a>
+                <input type="text" id="forumId" maxlength="15" placeholder="название форума(3-15)" onkeyup="rusDelete(this)">
+                <a id="toForum" class="btn">К форуму</a>
+                <a href="allforums.html" class="btn">Все форумы</a>
             </form>
+            <script>
+                function rusDelete(e){
+                    let regist = /[а-яА-ЯёЁ]/g
+                    e.value = e.value.replace(regist, '')
+                }
+            </script>
         </div>
     </header>
 
@@ -25,7 +33,7 @@
         <div class="formModal">
         
         <form action="" id="messageForm">
-            <h1 id="forumTitle">Отправить письмо</h1>
+            <h1 id="forumTitle"></h1>
             <div>
                 <div>
                     <label for="messageInput">Сообщение</label><textarea cols="10" rows="5" charswidth="23" name="text_body" id="messageInput"> </textarea>
@@ -34,7 +42,7 @@
             </div>
             
             
-           </form>
+        </form>
         </div>   
         <div id="messages"></div>
     </main>
@@ -43,6 +51,8 @@
 
     </footer>
 </body>
+
 <script src="js/app.js"></script>
+
 
 </html>
