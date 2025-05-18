@@ -22,9 +22,14 @@ const firebaseConfig = {
 };
 
 document.querySelector('#forumUrl').addEventListener('input', (e)=>{
+    document.querySelector('#toForum').href = '#'
     e.preventDefault()
-    toForumUrl = document.querySelector('#forumId').value;
+    let inpValue = document.querySelector('#forumId').value
+    toForumUrl = inpValue
+    if(inpValue.length >= 3 & inpValue.length <= 15){
+        console.log(inpValue)
     document.querySelector('#toForum').href = `${location.search.split('forumUrl=')[0]}?forumUrl=${toForumUrl}`
+    }
 })
 
 
@@ -37,9 +42,11 @@ document.getElementById('submitSend').addEventListener('click', ()=> {
     }
 });
 
-        
+
 firebase.initializeApp(firebaseConfig);
+
 const database = firebase.database();
+
 function displayMessages() {
     const messagesRef = database.ref(`forums/${forumUrl}/messages`);
     const messagesDiv = document.getElementById('messages');
@@ -58,7 +65,7 @@ function displayMessages() {
                 <article class="message" id="${messageId}">
                     <div>
                         <div>
-                            <span>Anonimous</span>
+                            <span>Аноним</span>
                             <span>${childSnapshot.val().time}</span>
                         </div>
                         <span class="spanId">${messageId}</span><br>    
