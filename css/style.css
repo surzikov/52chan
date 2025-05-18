@@ -1,3 +1,4 @@
+
 *{
     padding: 0;
     margin: 0;
@@ -54,6 +55,8 @@ main>div:first-child{
     border-radius: 5px;
     width: fit-content;
     cursor: pointer;
+    color: black;
+    text-decoration: none;
 }
 #messageForm>div{
     display: grid;
@@ -67,6 +70,7 @@ main>div:first-child{
     display: grid;
     grid-template-columns: 1fr 8fr;
     text-align: center;
+    column-gap: 1vw;
     align-items: center;
 }
 label{
@@ -85,6 +89,28 @@ header{
 }
 #forumUrl{
     justify-self: end;
+    display: flex;
+}
+#forumsList{
+
+    padding: 2vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    font-size: 3vw;
+    gap: 2vw;
+}
+#forumsList p a{
+    text-decoration: none;
+    color: white;
+}
+#forumsList p{
+    border: 1px solid black;
+    padding: 1vw 2vw;
+    border-radius: 5px;
+    text-align: center;    
+}
+.h1Center{
+    text-align: center;
 }
 @media screen and (max-width:  750px){
     header{
@@ -98,5 +124,16 @@ header{
         display: grid;
         justify-items: center;
         row-gap: 5px;
+    }
+    #messageForm>div>div{
+        grid-template-columns: 1fr;
+    }
+    #messageForm>div>div label{
+        padding: 1vw;
+    }
+    #messageForm>div>a, #messageForm>h1{
+        justify-self: center;
+        width: 100%;
+        text-align: center;
     }
 }
