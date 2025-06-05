@@ -22,8 +22,14 @@
             </form>
             <script>
                 function rusDelete(e){
-                    let regist = /[а-яА-ЯёЁ]/g
-                    e.value = e.value.replace(regist, '')
+                    var letters = /^[A-Za-z]+$/; 
+                    if (e.key.match(letters)) { 
+                        return true; 
+                    } 
+                    else { 
+                    e.preventDefault(); 
+        } 
+    })     
                 }
             </script>
         </div>
